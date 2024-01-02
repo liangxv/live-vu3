@@ -8,6 +8,8 @@
 <script setup>
 import { ref } from 'vue';
 import { showToast } from 'vant';
+
+const onClickLeft = () => history.back();
 const chosenAddressId = ref('1');
 const list = [
     {
