@@ -12,10 +12,8 @@ const router = createRouter({
       name: 'home',
       component: AppVue
     },
-    {
-      path: '/index',
-      component: indexVue
-    },
+    {path: '/index',component: indexVue},
+    {path: '/index/house',component: () => import("../views/index/house.vue"),},
     { path: '/my', component: () => import("../views/my/index.vue"), },
     { path: '/my/info', component: () => import("../views/my/info.vue"), },
     { path: '/my/setting', component: () => import("../views/my/setting.vue"), },
