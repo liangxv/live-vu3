@@ -10,6 +10,7 @@
     <van-tabs v-model:active="active" swipeable title-active-color="rgba(25, 137, 250, 0.8)">
         <van-tab title="出租出售">
             <van-tabs v-model:active="type" swipeable title-active-color="rgba(25, 137, 250, 0.8)">
+
                 <van-tab title="推荐">
                     <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
                         <van-row v-for="item in list" :key="item.id" style="border: 1px solid #f7f8f9;"
@@ -33,6 +34,7 @@
                 <van-tab title="新房">内容 1</van-tab>
                 <van-tab title="二手房">内容 1</van-tab>
                 <van-tab title="租房">内容 1</van-tab>
+
             </van-tabs>
         </van-tab>
         <van-tab title="买房租房">内容 2</van-tab>
@@ -43,6 +45,7 @@
 <script setup>
 import { ref } from 'vue';
 import { getData } from '@/api/house.js';
+
 const active = ref(0);
 const type = ref(0);
 const onClickLeft = () => history.back();
@@ -88,6 +91,7 @@ const houseDetail = (id) => {
 const onClick = () => {
     router.push('/publish/housepublish');
 }
+
 </script>
 
 <style scoped></style>
