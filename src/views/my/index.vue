@@ -5,12 +5,12 @@
             <van-row>
                 <van-col span="6" offset="1">
                     <van-image round width="70px" height="70px"
-                        src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+                        :src='user.avatar' />
                 </van-col>
                 <van-col span="8">
                     <div style="color: #fff;font-size: 12px;">
-                        <h2>我的名字</h2>
-                        <p>手机:15878576740</p>
+                        <h2>{{user.nickname}}</h2>
+                        <p>{{user.tel}}</p>
                     </div>
                 </van-col>
                 <van-col offset="4">
@@ -23,8 +23,13 @@
             <!-- 我的E币 -->
             <van-row>
                 <van-col span="24">
-                    <van-cell title="我的E币:8.65" value="立即充值" is-link :border="false"
-                        style="color: #fff; background: linear-gradient(to right, #2e99fa, #59b7fe);" />
+                    <van-cell value="立即充值" is-link :border="false"
+                        style="color: #fff; background: linear-gradient(to right, #2e99fa, #59b7fe);" >
+                        <template #title>
+                            <span class="custom-title">我的E币:</span>
+                            <span>{{user.accountBalance}}</span>
+                        </template>
+                    </van-cell>
                     <van-cell-group :border="false" inset>
                         <van-cell title="开通E网会员" icon="diamond-o" size="large" center clickable
                             style="background-color: #3a3534; color: #f3d7b1;">
@@ -87,13 +92,29 @@
     </div>
 </template>
 <script setup>
-import NavBottom from '@/views/navbottom.vue';
-
 // 页面跳转
+import NavBottom from '@/views/navbottom.vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { getUserInfoMassage } from '@/api/user.js';
+
 const router = useRouter();
 //设置
 const setting = () => router.push('/my/setting');
+
+//充值
+
+//获取用户信息
+const user = ref({});
+const getUserInfo = async () => {
+    let data = (await getUserInfoMassage(1)).data;
+    user.value = data;
+}
+
+onMounted(() => {
+    getUserInfo();
+})
+
 </script>
 <style scoped>
 .van-row {
