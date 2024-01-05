@@ -22,6 +22,8 @@ const router = createRouter({
     { path: '/publish/housepublish', component: () => import("../views/publish/HousePublish.vue"), },
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
     { path: '/pay', component: () => import("../components/pay.vue"), },
+    {path:'/publish/SecondHandMarket',component:()=> import("../views/publish/SecondHandMarket.vue"),},
+    {path:'/publish/SecondFindAll',component:()=> import("../views/publish/SecondFindAll.vue"),}
   ]
 })
 
