@@ -60,7 +60,11 @@
                 <van-grid clickable :column-num="4" :border="false">
                     <van-grid-item icon="wap-home-o" text="我的主页" />
                     <van-grid-item icon="back-top" text="优惠劵" />
-                    <van-grid-item icon="chat-o" text="我的互动" />
+                    <van-grid-item icon="chat-o" text="我的互动" >
+                        <template #icon>
+                            <img src="@/assets/avg/interaction.svg">
+                        </template>
+                    </van-grid-item>
                     <van-grid-item icon="star-o" text="我的收藏" />
                     <van-grid-item icon="orders-o" text="招聘管理" />
                     <van-grid-item icon="shop-o" text="店铺管理" />
@@ -107,5 +111,9 @@ const setting = () => router.push('/my/setting');
     height: 100vh;
     /* 100% 视窗高度 */
     background: #f1f2f8;
+}
+
+img {
+    width: 28px;
 }
 </style>

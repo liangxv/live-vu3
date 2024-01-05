@@ -20,10 +20,14 @@ const router = createRouter({
     { path: '/my/addresslist', component: () => import("../views/my/AddressList.vue"), },
     { path: '/publish', component: () => import("../views/publish/index.vue"), },
     { path: '/publish/housepublish', component: () => import("../views/publish/HousePublish.vue"), },
+
+    {path:'/publish/SecondHandMarket',component:()=> import("../views/publish/SecondHandMarket.vue"),},
+    {path:'/publish/SecondFindAll',component:()=> import("../views/publish/SecondFindAll.vue"),},
+    // 公共组件路由
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
     { path: '/pay', component: () => import("../components/pay.vue"), },
-    {path:'/publish/SecondHandMarket',component:()=> import("../views/publish/SecondHandMarket.vue"),},
-    {path:'/publish/SecondFindAll',component:()=> import("../views/publish/SecondFindAll.vue"),}
+    { path: '/releasesuccess', component: () => import("../components/ReleaseSuccess.vue"), },
+    
   ]
 })
 
