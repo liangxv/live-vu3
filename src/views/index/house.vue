@@ -24,7 +24,7 @@
                                 <van-tag plain type="primary" v-else-if="item.releaseState == 2">出租</van-tag>
                                 <van-tag plain type="warning" v-else-if="item.releaseState == 3">求购</van-tag>
                                 <van-tag plain type="primary" v-else>求租</van-tag>
-                                <span style="font-size: 15px;">{{ item.title }}</span>
+                                <span style="font-size: 15px; margin-left: 5px;">{{ item.title }}</span>
                                 <p style="font-size: 14px;">{{ item.area }}㎡ | {{ item.houseType }}</p>
                             </van-col>
                         </van-row>
