@@ -7,25 +7,51 @@
 
     </div>
     <van-action-bar>
-        <van-action-bar-button color="#be99ff" type="warning" text="查询信息" />
-        <van-action-bar-button color="#7232dd" type="danger" text="信息列表" />
+        <van-action-bar-button color="#be99ff" type="warning" text="查询信息" @click="queryinformation()" />
+        <van-action-bar-button color="#7232dd" type="danger" text="信息列表" @click="infolist()" />
     </van-action-bar>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useRouter,useRoute  } from 'vue-router';
 const onClickLeft = () => history.back();
+
+// 详细信息路由
+const detail = ref('');
+
+// 列表路由
+const list = ref('');
+
+const router = useRouter();
+const route = useRoute();
+
+const queryinformation = () => {
+    router.push(detail.value);
+}
+
+const infolist = () => {
+    router.push(list.value);
+}
+
+onMounted(() => {
+    detail.value = route.params.detail || '';
+    console.log(detail.value);
+    list.value = route.params.list || '';
+
+});
 </script>
 
 <style scoped>
-    .flex-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 70vh;
-    }
-    h4 {
-        margin: 3px;
-    }
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+h4 {
+    margin: 3px;
+}
 </style>
