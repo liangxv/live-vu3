@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AppVue from '@/App.vue'
 import indexVue from '@/views/index/index.vue'
 
 
@@ -26,6 +25,7 @@ const router = createRouter({
     // 公共组件路由
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
     { path: '/pay', component: () => import("../components/pay.vue"), },
+    { path: '/release', component: () => import("../components/release.vue"), },
     {
       path: '/releasesuccess/:detail/:list',
       name: 'ReleaseSuccess',
