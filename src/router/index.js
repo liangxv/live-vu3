@@ -18,6 +18,7 @@ const router = createRouter({
     { path: '/my/info', component: () => import("../views/my/info.vue"), },
     { path: '/my/setting', component: () => import("../views/my/setting.vue"), },
     { path: '/my/addresslist', component: () => import("../views/my/AddressList.vue"), },
+    { path: '/my/recharge', component: () => import("../views/my/recharge.vue"), },
     { path: '/publish', component: () => import("../views/publish/index.vue"), },
     { path: '/publish/housepublish', component: () => import("../views/publish/HousePublish.vue"), },
 
