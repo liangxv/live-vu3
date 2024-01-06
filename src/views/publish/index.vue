@@ -2,16 +2,16 @@
     <van-nav-bar title="请选择发布类型信息" left-text="返回" left-arrow @click-left="onClickLeft" />
     <van-notice-bar left-icon="volume-o" text="禁止发布黄,赌,毒及相关有关国家禁令禁止的内容" />
     <van-grid :column-num="4" clickable :border="false" style="margin-top: 15px; margin-dw: 15px;">
-        <van-grid-item icon="home-o" text="招聘求职" dot @click="show = true" />
-        <van-grid-item icon="search" text="房屋租售" badge="99+" @click="housepublish()" />
-        <van-grid-item icon="home-o" text="二手市场" dot />
-        <van-grid-item icon="search" text="拼车租车" badge="99+" />
-        <van-grid-item icon="home-o" text="本地商家" dot />
-        <van-grid-item icon="search" text="生活服务" badge="99+" />
-        <van-grid-item icon="home-o" text="相亲交友" dot />
-        <van-grid-item icon="search" text="社区茶座" badge="99+" />
+        <template v-for="item in gridItems" :key="item.text">
+            <van-grid-item :icon="item.icon" :text="item.text" :badge="item.badge" :dot="item.dot"
+                @click="item.clickHandler">
+                <template #icon>
+                    <img :src="item.iconSrc">
+                </template>
+            </van-grid-item>
+        </template>
     </van-grid>
-    <van-highlight :keywords="keywords" :source-string="text" highlight-class="custom-class" style="margin: 15px 15px;" />
+
     <div style="margin: 0 20px;">
         <van-button type="primary" size="large">立即充值</van-button>
     </div>
@@ -34,28 +34,81 @@ const onClickLeft = () => history.back();
 // 弹窗
 const show = ref(false);
 
-//剩余E币
-const text = `你的E币: 56.9`;
-const keywords = '56.9';
 
 // 页面跳转
 import { useRouter } from 'vue-router';
 const router = useRouter();
 // 房屋发布
 const housepublish = () => router.push('/publish/housepublish');
+
+const gridItems = [
+      {
+        text: "招聘求职",
+        dot: true,
+        iconSrc: "src/assets/avg/job.svg",
+        clickHandler: () => {
+          show.value = true;
+        }
+      },
+      {
+        text: "房屋租售",
+        badge: "99+",
+        iconSrc: "src/assets/avg/house.svg",
+        clickHandler: housepublish
+      },
+      {
+        text: "二手市场",
+        dot: true,
+        iconSrc: "src/assets/avg/secondhand.svg",
+        clickHandler: () => {
+          show.value = true;
+        }
+      },
+      {
+        text: "拼车租车",
+        dot: true,
+        iconSrc: "src/assets/avg/car.svg",
+        clickHandler: () => {
+          show.value = true;
+        }
+      },
+      {
+        text: "本地商家",
+        dot: true,
+        iconSrc: "src/assets/avg/merchant.svg",
+        clickHandler: () => {
+          show.value = true;
+        }
+      },
+      {
+        text: "生活服务",
+        dot: true,
+        iconSrc: "src/assets/avg/server.svg",
+        clickHandler: () => {
+          show.value = true;
+        }
+      },
+      {
+        text: "相亲交友",
+        dot: true,
+        iconSrc: "src/assets/avg/love.svg",
+        clickHandler: () => {
+          show.value = true;
+        }
+      },
+      {
+        text: "社区茶座",
+        dot: true,
+        iconSrc: "src/assets/avg/community.svg",
+        clickHandler: () => {
+          show.value = true;
+        }
+      },
+      // Add more grid items as needed
+    ];
 </script>
 <style scoped>
-.content {
-    padding: 16px 16px 160px;
-}
-
-.custom-class {
-    color: red;
-}
-
-.van-highlight {
-    display: flex;
-    justify-content: center;
-    /* 在主轴上居中 */
+img {
+    width: 28px;
 }
 </style>
