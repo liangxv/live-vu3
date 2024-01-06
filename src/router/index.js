@@ -14,9 +14,8 @@ const router = createRouter({
     },
     {path: '/index',component: indexVue},
     {path: '/index/house',component: () => import("../views/index/house.vue"),},
-
     {path: '/index/car',component: () => import("../views/index/car.vue"),},
-
+    {path:'/Second/findTitle/:id',component:()=>import("../views/index/secondDetail.vue")},
     { path: '/house/detail/:id', component: () => import("../views/index/housedetail.vue") },
     { path: '/my', component: () => import("../views/my/index.vue"), },
     { path: '/my/info', component: () => import("../views/my/info.vue"), },

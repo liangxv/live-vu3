@@ -82,7 +82,7 @@ const router = useRouter();
 
 //跳转到详情页面
 const houseDetail = (id) => {
-    router.push('/house/detail/' + id);
+    router.push('/house/detail/'+ id);
 }
 
 const onClick = () => {
