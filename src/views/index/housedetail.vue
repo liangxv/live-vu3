@@ -37,7 +37,7 @@
             <div class="house-detail-container">
                 <div class="house-detail-item">
                     <p>房屋面积</p>
-                    <h3>{{ houseDetail.area }}</h3>
+                    <h3>{{ houseDetail.area }}㎡</h3>
                 </div>
             </div>
         </van-col>
