@@ -8,3 +8,10 @@ export function getUser(conditions) {
 export function login(data) {
     return request.post(`/user/login`, data);
 }
+export function getUserInfoMassage(conditions) {
+    return request.get(`/user/findUserInfo/${conditions}`);
+}
+
+export function rechargeAndConsumption() {
+    return request.put(`/user/rechargeAndConsumption/${conditions}`);
+}
