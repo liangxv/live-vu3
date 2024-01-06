@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 const active = ref(0)
 const icon = {
-    active: 'src/assets/avg/add.svg',
-    inactive:'src/assets/avg/add1.svg',
+    active: 'src/assets/avg/add1.svg',
+    inactive:'src/assets/avg/add.svg',
 };
 </script>
 <template >

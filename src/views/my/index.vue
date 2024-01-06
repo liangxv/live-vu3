@@ -31,7 +31,7 @@
                         </template>
                     </van-cell>
                     <van-cell-group :border="false" inset>
-                        <van-cell title="开通E网会员" icon="diamond-o" size="large" center clickable
+                        <van-cell title="开通E网会员" icon="diamond" size="large" center clickable
                             style="background-color: #3a3534; color: #f3d7b1;">
                             <!-- 使用 right-icon 插槽来自定义右侧图标 -->
                             <template #right-icon>
