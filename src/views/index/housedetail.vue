@@ -37,7 +37,7 @@
             <div class="house-detail-container">
                 <div class="house-detail-item">
                     <p>房屋面积</p>
-                    <h3>{{ houseDetail.area }}</h3>
+                    <h3>{{ houseDetail.area }}㎡</h3>
                 </div>
             </div>
         </van-col>
@@ -87,12 +87,11 @@ const houseDetail = ref({});
 const advantageArray = [",", " "];  // 分隔符是逗号和空格
 const resultArray = ref([])
 const price = ref(0);
+
+
 const details = async () => {
     let data = (await getDetails(id.value)).data;
     houseDetail.value = data;
-
-    
-
     // 在获取数据之后进行检查和处理
     if (typeof houseDetail.value.houseAdvantage === "string") {
         resultArray.value = houseDetail.value.houseAdvantage.split(new RegExp(advantageArray.join("|"), "g"));
@@ -100,7 +99,7 @@ const details = async () => {
     if (houseDetail.value.price) {
         price.value = formatNumber(houseDetail.value.price);
     }
-}
+};
 
 //获取用户信息
 const user = ref({});
