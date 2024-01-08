@@ -1,17 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import indexVue from '@/views/index/index.vue'
 
 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: AppVue
-    },
-    {path: '/index',component: indexVue},
+    {path: '/',component: () => import("../views/index/index.vue"),},
     {path: '/index/house',component: () => import("../views/index/house.vue"),},
     {path: '/index/car',component: () => import("../views/index/car.vue"),},
     {path:'/Second/findTitle/:id',component:()=>import("../views/index/secondDetail.vue")},

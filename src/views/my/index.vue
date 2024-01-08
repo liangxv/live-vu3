@@ -52,7 +52,11 @@
                     <van-grid-item icon="edit" text="我的发布" to="/my/info"/>
                     <van-grid-item icon="back-top" text="我的顶置" />
                     <van-grid-item icon="chart-trending-o" text="我的推广" />
-                    <van-grid-item icon="orders-o" text="审核中" />
+                    <van-grid-item text="审核中" >
+                        <template #icon>
+                            <img src="@/assets/avg/audit.svg">
+                        </template>
+                    </van-grid-item>
                 </van-grid>
             </van-col>
         </van-row>
