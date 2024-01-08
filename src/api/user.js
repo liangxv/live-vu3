@@ -9,7 +9,7 @@ export function login(data) {
     return request.post(`/user/login`, data);
 }
 export function getUserInfoMassage(conditions) {
-    return request.get(`/user/findUserInfo/${conditions}`);
+    return request.get(`/user/getUserInfoMassage/${conditions}`);
 }
 
 export function rechargeAndConsumption() {
