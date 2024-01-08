@@ -35,14 +35,11 @@
                 <van-tab title="数码">nei2</van-tab>
                 <van-tab title="家具">nei3</van-tab>
                 <van-tab title="家电">nei4</van-tab>
-                <van-tab title="数码">nei2</van-tab>
-                <van-tab title="家具">nei3</van-tab>
-                <van-tab title="家电">nei4</van-tab>
                 <template #nav-right>
                     <van-icon name="wap-nav" class="channels-tabs"></van-icon>
                 </template>
             </van-tabs>
-            <van-floating-bubble axis="xy" icon="add" magnetic="x" @offset-change="onOffsetChange" @click="Onclick" />
+            <van-floating-bubble axis="xy" icon="add" magnetic="x" @offset-change="onOffsetChange" @click="onClick" />
         </van-tab>
         <van-tab title="求购">
             内容2
@@ -103,6 +100,9 @@ const router = useRouter();
 //跳转到详情页
 const secondDetail = (id) =>{
     router.push('/Second/findTitle/'+id);
+}
+const onClick = () => {
+    router.push('/publish/SecondHandMarket')
 }
 
      onMounted(onLoad); // 组件挂载时加载数据

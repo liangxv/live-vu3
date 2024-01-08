@@ -6,3 +6,7 @@ export function getData(conditions) {
 export function getSecondDetails(id) {
      return request.get(`/Second/findTitle/${id}`);
 }
+
+export function getSecondAdd() {
+
+}
