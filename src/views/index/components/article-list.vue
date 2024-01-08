@@ -30,7 +30,7 @@
                 <van-tag plain type="primary" v-else-if="item.releaseState == 2">房屋出租</van-tag>
                 <van-tag plain type="warning" v-else-if="item.releaseState == 3">房屋求购</van-tag>
                 <van-tag plain type="primary" v-else>房屋求租</van-tag>
-                <span style="font-size: 15px;">{{ item.title }}</span>
+                <span class="van-ellipsis" style="font-size: 15px;">{{ item.title }}</span>
                 <p style="font-size: 14px;">{{ item.area }}㎡ | {{ item.houseType }}
                     <span class="orange-text" style="font-size: 14px; float: right; color: orangered; margin-right: 10px"
                     >面议</span>
@@ -71,6 +71,7 @@
                 pageSize: 5,
 
             });
+            //注册跳转组件
             const router = useRouter();
 
             const onLoad = async () => {
@@ -86,7 +87,6 @@
                 const {data} = await getData(params);
 
                 const results = data.list;
-                const total = results.total;
 
                 //2.
                 state.list.push(...results);
@@ -107,7 +107,6 @@
             const houseDetail = (id) => {
                 router.push('/house/detail/' + id);
             }
-
             const onClick = () => {
                 router.push('/publish/housepublish');
             }

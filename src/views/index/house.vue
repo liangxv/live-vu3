@@ -15,18 +15,24 @@
         >
             <van-tabs v-model:active="type" swipeable title-active-color="rgba(25, 137, 250, 0.8)">
                 <van-tab
-                        v-for="itme in houseStateList"
-                        :title="itme.label"
-                        :key="itme.houseState"
+                        v-for="itme2 in houseStateList"
+                        :title="itme2.label"
+                        :key="itme2.houseState"
                 >
-                    <article-list :channel="itme" :releaseStateArr="item"></article-list>
+                    <template v-if="item.releaseState === 0">
+                        <article-list :channel="itme2" :releaseStateArr="item"></article-list>
+                    </template>
+
+                    <template v-else>
+                        <house-list :channel="itme2" :releaseStateArr="item"></house-list>
+
+                    </template>
 
                     <!--                    二级-->
                 </van-tab>
             </van-tabs>
-
-
         </van-tab>
+
     </van-tabs>
 
     <!--            一级标签-->
@@ -39,10 +45,13 @@
     import {ref, reactive} from 'vue';
     import {getData} from '@/api/house.js';
     import ArticleList from "./components/article-list.vue";
+    // import houseArticleList from "./components/house-buy.vue";
+    import HouseList from "./components/house-list.vue";
 
     const active = ref(0);
     const type = ref(0);
     const onClickLeft = () => history.back();
+    const houseBuy=ref(1);
     const list = ref([]);
     const loading = ref(false);
     const finished = ref(false);
@@ -70,6 +79,7 @@
                 releaseState: 0,
                 label: "出租出售"
             },
+
             {
                 releaseState: 1,
                 label: "买房租房"
@@ -102,9 +112,7 @@
 
     };
 
-    // 页面跳转
-    import {useRouter} from 'vue-router';
-    const router = useRouter();
+
 
 
 
