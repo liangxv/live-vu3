@@ -34,11 +34,9 @@ const checked = ref('1');
 const result = ref('');
 const showPicker = ref(false);
 const columns = [
-    { text: '杭州', value: 'Hangzhou' },
-    { text: '宁波', value: 'Ningbo' },
-    { text: '温州', value: 'Wenzhou' },
-    { text: '绍兴', value: 'Shaoxing' },
-    { text: '湖州', value: 'Huzhou' },
+    { text: '新房', value: '1' },
+    { text: '二手房', value: '2' },
+    { text: '租房', value: '3' },
 ];
 
 const onConfirm = ({ selectedOptions }) => {
