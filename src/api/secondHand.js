@@ -7,6 +7,6 @@ export function getSecondDetails(id) {
      return request.get(`/Second/findTitle/${id}`);
 }
 
-export function getSecondAdd() {
-
+export function getSecondAdd(secondHandMarket) {
+    return request.get(`/Second/add`,secondHandMarket)
 }
