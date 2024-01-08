@@ -38,8 +38,6 @@ const show = ref(false);
 // 页面跳转
 import { useRouter } from 'vue-router';
 const router = useRouter();
-// 房屋发布
-const housepublish = () => router.push('/publish/housepublish');
 
 const gridItems = [
       {
@@ -54,15 +52,13 @@ const gridItems = [
         text: "房屋租售",
         badge: "99+",
         iconSrc: "src/assets/avg/house.svg",
-        clickHandler: housepublish
+        clickHandler: () => router.push('/publish/housepublish')
       },
       {
         text: "二手市场",
         dot: true,
         iconSrc: "src/assets/avg/secondhand.svg",
-        clickHandler: () => {
-          show.value = true;
-        }
+        clickHandler: () => router.push('/publish/SecondHandMarket')
       },
       {
         text: "拼车租车",
@@ -104,7 +100,6 @@ const gridItems = [
           show.value = true;
         }
       },
-      // Add more grid items as needed
     ];
 </script>
 <style scoped>
