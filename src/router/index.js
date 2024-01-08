@@ -6,12 +6,17 @@ import indexVue from '@/views/index/index.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: AppVue
+    },
+    {path: '/index',component: indexVue},
+    {path: '/index/house',component: () => import("../views/index/house.vue"),},
+    {path: '/index/car',component: () => import("../views/index/car.vue"),},
+    {path:'/Second/findTitle/:id',component:()=>import("../views/index/secondDetail.vue")},
     {path: '/login', component: () => import("../views/login.vue")},
   
-    { path: '/', component: indexVue },
-    { path: '/index/house', component: () => import("../views/index/house.vue"), },
-
-    { path: '/index/car', component: () => import("../views/index/car.vue"), },
 
     { path: '/house/detail/:id', component: () => import("../views/index/housedetail.vue") },
     { path: '/my', component: () => import("../views/my/index.vue"), },
@@ -21,6 +26,7 @@ const router = createRouter({
     { path: '/my/recharge', component: () => import("../views/my/recharge.vue"), },
     { path: '/publish', component: () => import("../views/publish/index.vue"), },
     { path: '/publish/housepublish', component: () => import("../views/publish/HousePublish.vue"), },
+    { path: '/publish/SecondHandMarket', component:()=> import("../views/publish/SecondHandMarket.vue"),},
 
     {path:'/publish/SecondHandMarket',component:()=> import("../views/publish/SecondHandMarket.vue"),},
     {path:'/publish/SecondFindAll',component:()=> import("../views/publish/SecondFindAll.vue"),},
