@@ -53,9 +53,9 @@
         <van-field v-model="formHouseData.houseDescribe" name="description" label="房源描述" type="textarea" rows="3" autosize
             placeholder="请输入房源描述" />
 
-        <van-field v-model="formHouseData.imgSrc" name="uploader" label="添加照片" multiple>
+        <van-field name="uploader" label="添加图片">
             <template #input>
-                <van-uploader :after-read="afterRead" />
+                <van-uploader v-model="imagevalue" :after-read="afterRead" multiple />
             </template>
         </van-field>
 
@@ -92,7 +92,7 @@
 import { ref } from 'vue';
 import { houseAdd } from "@/api/house";
 import { useRouter } from 'vue-router';
-import { showToast } from "vant";
+import { uplodad } from '@/api/secondHand.js';
 const router = useRouter();
 
 const onClickLeft = () => history.back();
@@ -104,29 +104,16 @@ const result = ref('');
 const result2 = ref('');
 
 const imagevalue = ref([
-    { url: 'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg' }
 ]);
 
-const afterRead = (file) => {
-    // console.log("文件信息:"+file)
-    console.log(file)
-    showToast("上传成功!");
-    console.log(file.file);
-    console.log("文件名：" + file.file.name)
-    console.log("文件大小：" + file.file.size);
-
-    console.log("文件类型：" + file.file.type);
-    const isJpg = file.file.type === 'image/jpeg';
-    if (!isJpg) {
-        // Toast.message.error('上传头像图片只能是 JPG 格式!')
-        console.log("上传头像图片只能是 JPG 格式!");
-
+const afterRead = async (file) => {
+    //此时文件可以自行将文件上传至服务器
+    console.log(file);
+    let data = await uplodad(file);
+    if (data.code === 200) {
+        formHouseData.value.imgSrc = data.data;
     }
-
-
-    console.log("文件路径：" + file.objectUrl);
-    // formHouseData.value.imgSrc=URL.createObjectURL(file.file)
-    formHouseData.value.imgSrc = imagevalue;
+    console.log(value.value);
 };
 
 const formHouseData = ref({
