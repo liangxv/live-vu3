@@ -1,30 +1,12 @@
 <template>
-
-    <!--    <div class="article-list"></div>-->
-
-    <van-list
-            v-model:loading="state.loading"
-            :finished="state.finished"
-            finished-text="没有更多了"
-            @load="onLoad"
-    >
-        <van-row
-                v-for="item in state.list"
-                :key="item.id"
-                style="border: 1px solid #f7f8f9;"
-                @click="houseDetail(item.id)"
-                class="van-haptics-feedback">
-
-            <van-col  span="8">
+    <van-list v-model:loading="state.loading" :finished="state.finished" finished-text="没有更多了" @load="onLoad">
+        <van-row v-for="item in state.list" :key="item.id" style="border: 1px solid #f7f8f9;" @click="houseDetail(item.id)"
+            class="van-haptics-feedback">
+            <van-col span="8">
                 <div style="margin: 5px; border-radius: 4px; overflow: hidden; ">
-                    <van-image width="130" height="100" fit="fill" :src="item.imgSrc"/>
+                    <van-image width="130" height="100" fit="fill" :src="item.imgSrc" />
                 </div>
             </van-col>
-
-<!--            <template #right-icon>-->
-<!--                <van-image width="100px" height="100px" :src="item.imgSrc"></van-image>-->
-<!--            </template>-->
-
             <van-col span="16">
                 <van-tag plain type="warning" v-if="item.releaseState == 1">房屋出售</van-tag>
                 <van-tag plain type="primary" v-else-if="item.releaseState == 2">房屋出租</van-tag>
@@ -32,110 +14,78 @@
                 <van-tag plain type="primary" v-else>房屋求租</van-tag>
                 <span class="van-ellipsis" style="font-size: 15px;">{{ item.title }}</span>
                 <p style="font-size: 14px;">{{ item.area }}㎡ | {{ item.houseType }}
-                    <span class="orange-text" style="font-size: 14px; float: right; color: orangered; margin-right: 10px"
-                    >面议</span>
+                    <span class="orange-text"
+                        style="font-size: 14px; float: right; color: orangered; margin-right: 10px">面议</span>
                 </p>
-
             </van-col>
-
         </van-row>
     </van-list>
 </template>
 
-<script>
-    import {ref, reactive} from 'vue';
-    import {getData} from "../../../api/house";
-    import { useRouter } from 'vue-router';
+<script setup>
+import { reactive } from 'vue';
+import { getData } from "@/api/house";
+import { useRouter } from 'vue-router';
+const props = defineProps({
+    channel: {
+        type: Object,
+        required: true,
+    },
 
+    releaseStateArr: {
+        type: Object,
+        required: true,
+    },
+});
 
-    export default {
-        props: {
-            channel: {
-                type: Object,
-                required: true,
-            },
+const state = reactive({
+    list: [],
+    loading: false,
+    finished: false,
+    pageNumber: 1,
+    pageSize: 5,
 
-            releaseStateArr: {
-                type: Object,
-                required: true,
-            },
+});
+//注册跳转组件
+const router = useRouter();
 
-        },
+const onLoad = async () => {
+    const params = {
+        houseState: props.channel.houseState,
+        releaseState: props.releaseStateArr.releaseState,
+        pageNum: state.pageNumber,
+        pageSize: 5,
 
-        setup(props) {
-            const state = reactive({
-                list: [],
-                loading: false,
-                finished: false,
-                pageNumber: 1,
-                pageSize: 5,
+    };
 
-            });
-            //注册跳转组件
-            const router = useRouter();
+    const { data } = await getData(params);
 
-            const onLoad = async () => {
-                console.log("load");
-                const params = {
-                    houseState: props.channel.houseState,
-                    releaseState: props.releaseStateArr.releaseState,
-                    pageNum: state.pageNumber,
-                    pageSize: 5,
+    const results = data.list;
 
-                };
+    //2.
+    state.list.push(...results);
 
-                const {data} = await getData(params);
+    //3.
+    state.loading = false;
 
-                const results = data.list;
+    //4.
+    if (results.length > 0) {
+        state.pageNumber++;
+    } else {
+        state.finished = true;
+    }
 
-                //2.
-                state.list.push(...results);
+};
 
-                //3.
-                state.loading = false;
-
-                //4.
-                if (results.length > 0) {
-                    state.pageNumber++;
-                } else {
-                    state.finished = true;
-                }
-
-            };//onload
-
-            //跳转到详情页面
-            const houseDetail = (id) => {
-                router.push('/house/detail/' + id);
-            }
-            const onClick = () => {
-                router.push('/publish/housepublish');
-            }
-
-            return {
-                state,
-                onLoad,
-                onClick,
-                houseDetail
-            };//return
-
-        },//setup
-
-    };//ex
-
+//跳转到详情页面
+const houseDetail = (id) => {
+    router.push('/house/detail/' + id);
+}
 
 </script>
 
 <style>
-
-
-
-    .cell-list {
-        min-height: 100px;
-    }
-
-
-
-    /*.article-list{*/
-    /*    margin-top: 80px;*/
-    /*}*/
+.cell-list {
+    min-height: 100px;
+}
 </style>

@@ -3,7 +3,6 @@
         <van-list v-model:loading="state.loading" :finished="state.finished" finished-text="没有更多了" @load="onLoad">
             <van-row v-for="item in state.list" :key="item.id" style="border: 1px solid #f7f8f9;"
                 @click="houseDetail(item.id)" class="van-haptics-feedback">
-
                 <van-col span="16">
                     <van-tag plain type="warning" v-if="item.releaseState == 1">房屋出售</van-tag>
                     <van-tag plain type="primary" v-else-if="item.releaseState == 2">房屋出租</van-tag>
@@ -11,31 +10,24 @@
                     <van-tag plain type="primary" v-else>房屋求租</van-tag>
                     <span class="van-ellipsis" style="font-size: 15px;">{{ item.title }}</span>
                 </van-col>
-
                 <span class="van-multi-ellipsis--l3" style="font-size: 15px;">{{ item.houseDescribe }}</span>
-
                 <van-col span="8">
                     <p style="font-size: 15px; text-align: left;">用户:123456</p>
                 </van-col>
                 <van-col span="8">
                     <p style="font-size: 15px; text-align: center;">{{ item.createTime }}</p>
                 </van-col>
-                <van-col span="8">
-                    <img src="@/assets/avg/views.svg">
-                    <p style="font-size: 15px; text-align: right;">浏览量：{{ item.views }}</p>
+                <van-col span="8">                   
+                    <p style="font-size: 15px; text-align: right;"><img src="@/assets/avg/views.svg">{{ item.views }}</p>
                 </van-col>
-
                 <van-col></van-col>
-
             </van-row>
-
-
         </van-list>
     </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import { getData } from "@/api/house";
 import { useRouter } from 'vue-router'
 

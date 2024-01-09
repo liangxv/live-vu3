@@ -1,5 +1,5 @@
 <template>
-    <van-nav-bar title="发布租房买房" left-text="返回" left-arrow @click-left="onClickLeft"/>
+    <van-nav-bar title="发布租房买房" left-text="返回" left-arrow @click-left="onClickLeft" />
 
     <van-form @submit="onSubmit">
 
@@ -16,20 +16,11 @@
 
         <van-field v-model="formHouseData.title" label="标题" placeholder="填写标题"></van-field>
 
-        <van-field
-                v-model="result"
-                is-link
-                readonly
-                name="houseState"
-                label="房源状态"
-                placeholder="请选择"
-                @click="showPicker1 = true"></van-field>
+        <van-field v-model="result" is-link readonly name="houseState" label="房源状态" placeholder="请选择"
+            @click="showPicker1 = true"></van-field>
 
         <van-popup v-model:show="showPicker1" position="bottom">
-            <van-picker
-                    :columns="columns"
-                    @confirm="onConfirm"
-                    @cancel="showPicker1 = false"/>
+            <van-picker :columns="columns" @confirm="onConfirm" @cancel="showPicker1 = false" />
 
         </van-popup>
 
@@ -38,12 +29,7 @@
         </van-field>
 
         <div class="price-row">
-            <van-field
-                    class="price-field"
-                    v-model="formHouseData.price"
-                    label="房源价格"
-                    placeholder="填写价格"
-            >
+            <van-field class="price-field" v-model="formHouseData.price" label="房源价格" placeholder="填写价格">
                 <template #input>
                     <van-checkbox-group v-model="formHouseData.isNegotiable" direction="horizontal">
                         <van-checkbox name="面议" shape="square">面议</van-checkbox>
@@ -51,58 +37,31 @@
                 </template>
             </van-field>
             <div class="manual-price-field" v-if="!formHouseData.isNegotiable.includes('面议')">
-                <van-field
-                        v-model="formHouseData.price"
-                        label="输入价格"
-                        placeholder="填写价格"
-                ></van-field>
+                <van-field v-model="formHouseData.price" label="输入价格" placeholder="填写价格"></van-field>
             </div>
         </div>
 
-        <van-field
-                v-model="result2"
-                name="renovationState"
-                label="装修情况"
-                placeholder="请选择"
-                readonly
-                is-link
-                @click="showPicker2 = true"
-        />
+        <van-field v-model="result2" name="renovationState" label="装修情况" placeholder="请选择" readonly is-link
+            @click="showPicker2 = true" />
 
         <van-popup v-model:show="showPicker2" position="bottom">
-            <van-picker
-                    :columns="renovationStateList"
-                    @confirm="onConfirmRenovationState"
-                    @cancel="showPicker2 = false"
-            />
+            <van-picker :columns="renovationStateList" @confirm="onConfirmRenovationState" @cancel="showPicker2 = false" />
         </van-popup>
 
-        <van-field
-                v-model="formHouseData.houseAdvantage"
-                name="advantages"
-                label="房源优点"
-                placeholder="例如：离学校近,地铁口附近,随时看房"
-        />
+        <van-field v-model="formHouseData.houseAdvantage" name="advantages" label="房源优点" placeholder="例如：离学校近,地铁口附近,随时看房" />
 
-        <van-field
-                v-model="formHouseData.houseDescribe"
-                name="description"
-                label="房源描述"
-                type="textarea"
-                rows="3"
-                autosize
-                placeholder="请输入房源描述"
-        />
+        <van-field v-model="formHouseData.houseDescribe" name="description" label="房源描述" type="textarea" rows="3" autosize
+            placeholder="请输入房源描述" />
 
-        <van-field v-model="formHouseData.imgSrc" name="uploader" label="添加照片" multiple >
+        <van-field v-model="formHouseData.imgSrc" name="uploader" label="添加照片" multiple>
             <template #input>
                 <van-uploader :after-read="afterRead" />
             </template>
         </van-field>
 
-        <van-field v-model="formHouseData.person" label="联系人" placeholder="请输入联系人姓名"/>
+        <van-field v-model="formHouseData.person" label="联系人" placeholder="请输入联系人姓名" />
 
-        <van-field v-model="formHouseData.contact" label="电话" placeholder="请输入联系人电话" type="tel"/>
+        <van-field v-model="formHouseData.contact" label="电话" placeholder="请输入联系人电话" type="tel" />
 
 
         <div style="margin: 16px;">
@@ -114,118 +73,118 @@
 </template>
 
 <style>
-    .price-row {
-        display: flex;
-        align-items: center;
-    }
+.price-row {
+    display: flex;
+    align-items: center;
+}
 
-    .price-field {
-        flex: 1;
-        margin-right: 10px;
-    }
+.price-field {
+    flex: 1;
+    margin-right: 10px;
+}
 
-    .manual-price-field {
-        flex: 1;
-    }
+.manual-price-field {
+    flex: 1;
+}
 </style>
 
 <script setup>
-    import {ref} from 'vue';
-    import {houseAdd} from "../../api/house";
-    import router from "../../router";
-    import { showToast } from "vant";
+import { ref } from 'vue';
+import { houseAdd } from "@/api/house";
+import { useRouter } from 'vue-router';
+import { showToast } from "vant";
+const router = useRouter();
+
+const onClickLeft = () => history.back();
+
+const areaValue = ref('120㎡一室一厅一卫');
+
+const checked = ref('1');
+const result = ref('');
+const result2 = ref('');
+
+const imagevalue = ref([
+    { url: 'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg' }
+]);
+
+const afterRead = (file) => {
+    // console.log("文件信息:"+file)
+    console.log(file)
+    showToast("上传成功!");
+    console.log(file.file);
+    console.log("文件名：" + file.file.name)
+    console.log("文件大小：" + file.file.size);
+
+    console.log("文件类型：" + file.file.type);
+    const isJpg = file.file.type === 'image/jpeg';
+    if (!isJpg) {
+        // Toast.message.error('上传头像图片只能是 JPG 格式!')
+        console.log("上传头像图片只能是 JPG 格式!");
+
+    }
 
 
-    const onClickLeft = () => history.back();
+    console.log("文件路径：" + file.objectUrl);
+    // formHouseData.value.imgSrc=URL.createObjectURL(file.file)
+    formHouseData.value.imgSrc = imagevalue;
+};
 
-    const areaValue = ref('120㎡一室一厅一卫');
+const formHouseData = ref({
+    isNegotiable: [],
+    price: '',
+    releaseState: '',
+    title: '',
+    houseState: '',
+    area: '',
+    renovationState: '',
+    houseAdvantage: '',
+    houseDescribe: '',
+    imgSrc: [],
+    person: '',
+    contact: '',
+});
 
-    const checked = ref('1');
-    const result = ref('');
-    const result2 = ref('');
+let showPicker1 = ref(false);
+let showPicker2 = ref(false);
 
-    const imagevalue=ref([
-        {url:'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg'}
-    ]);
+const columns = [
+    { text: '新房', value: '1' },
+    { text: '二手房', value: '2' },
+    { text: '租房', value: '3' },
+];
 
-    const afterRead=(file)=>{
-        // console.log("文件信息:"+file)
-        console.log(file)
-        showToast("上传成功!");
-        console.log(file.file);
-        console.log("文件名："+file.file.name)
-        console.log("文件大小：" + file.file.size);
-
-        console.log("文件类型：" + file.file.type);
-        const isJpg=file.file.type==='image/jpeg';
-        if (!isJpg){
-            // Toast.message.error('上传头像图片只能是 JPG 格式!')
-            console.log("上传头像图片只能是 JPG 格式!");
-
-        }
-
-
-        console.log("文件路径：" + file.objectUrl);
-        // formHouseData.value.imgSrc=URL.createObjectURL(file.file)
-        formHouseData.value.imgSrc=imagevalue;
-    };
-
-    const formHouseData = ref({
-        isNegotiable: [],
-        price: '',
-        releaseState: '',
-        title: '',
-        houseState: '',
-        area: '',
-        renovationState: '',
-        houseAdvantage: '',
-        houseDescribe: '',
-        imgSrc: [],
-        person: '',
-        contact: '',
-    });
-
-    let showPicker1 = ref(false);
-    let showPicker2 = ref(false);
-
-    const columns = [
-        {text: '新房', value: '1'},
-        {text: '二手房', value: '2'},
-        {text: '租房', value: '3'},
-    ];
-
-    const renovationStateList = [
-        {text: '简装修', value: '1'},
-        {text: '精装修', value: '2'},
-        {text: '毛坯房', value: '3'},
-    ];
+const renovationStateList = [
+    { text: '简装修', value: '1' },
+    { text: '精装修', value: '2' },
+    { text: '毛坯房', value: '3' },
+];
 
 
-    const onConfirm = ({selectedOptions}) => {
-        result.value = selectedOptions[0]?.text;
-        formHouseData.value.houseState = selectedOptions[0].value;
-        showPicker1.value = false;
-    };
+const onConfirm = ({ selectedOptions }) => {
+    result.value = selectedOptions[0]?.text;
+    formHouseData.value.houseState = selectedOptions[0].value;
+    showPicker1.value = false;
+};
 
-    const onConfirmRenovationState = ({selectedOptions}) => {
-        result2.value=selectedOptions[0]?.text
-        formHouseData.value.releaseState = selectedOptions[0]?.value
-        showPicker2.value = false;
-    };
+const onConfirmRenovationState = ({ selectedOptions }) => {
+    result2.value = selectedOptions[0]?.text
+    formHouseData.value.releaseState = selectedOptions[0]?.value
+    showPicker2.value = false;
+};
 
-    const onSubmit = async () => {
+const onSubmit = async () => {
 
-      const response=await houseAdd(formHouseData.value);
+    const response = await houseAdd(formHouseData.value);
 
-      console.log(response);
+    console.log(response);
 
-      if (response.code===200){
-          console.log("提交");
-          router.push('/release/:id/:typeId')
-      }else {
-          console.log('提交失败');
-      }
+    if (response.code === 200) {
+        console.log("提交");
+        router.push({ name: 'release', params: { id: response.data, typeId: 1 } });
+    } else {
+        console.log('提交失败');
+    }
 
-    };
+};
 
 </script>
