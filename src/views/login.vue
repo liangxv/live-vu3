@@ -36,6 +36,7 @@
             </div>
         </van-form>
     </div>
+
 </template>
 
 <script setup>
@@ -45,6 +46,7 @@ import { useRouter } from 'vue-router';
 const isPhone = ref(true)
 const router = useRouter();
 const user = ref({});
+
 const onSubmit = async () => {
     let data = {};
     if (isPhone.value) {
