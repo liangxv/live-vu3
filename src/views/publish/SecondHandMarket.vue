@@ -31,10 +31,11 @@
 
                 <van-field v-model="products.description" autosize label="产品描述" type="textarea" required
                     placeholder="请说明物品名称,参数,或价格说明等信息,500字内,请勿填写电话/微信等联系方式！" />
-                <div class="input-row">
-                    <van-field v-model="products.imagesrc" type="digit" label="添加图片" />
-                    <van-uploader :after-read="afterRead" /> <!--上传图片 -->
-                </div>
+                <van-field name="uploader" label="添加图片">
+                    <template #input>
+                        <van-uploader v-model="value" :after-read="afterRead" multiple />
+                    </template>
+                </van-field>
 
                 <van-field v-model="products.contacts" required clearable label="联系人" placeholder="请输入用户名" />
                 <van-field v-model="products.contactinformation" required clearable label="联系方式" placeholder="请输入手机号" />
@@ -50,7 +51,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { getSecondAdd } from '@/api/secondHand.js';
+import { getSecondAdd, uplodad } from '@/api/secondHand.js';
 //路由
 import { useRouter } from 'vue-router';
 const router = useRouter();
@@ -58,9 +59,19 @@ const onClickLeft = () => history.back();
 const products = ref({
     classification: ""
 });
-const afterRead = (file) => {
+
+const value = ref([
+     
+    ]);
+const afterRead = async (file) => {
     //此时文件可以自行将文件上传至服务器
     console.log(file);
+    let data = await uplodad(file);
+    if (data.code === 200) {
+        products.value.imagesrc = data.data;
+    }
+    console.log(value.value);
+
 };
 
 

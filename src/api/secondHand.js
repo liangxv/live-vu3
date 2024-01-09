@@ -10,3 +10,11 @@ export function getSecondDetails(id) {
 export function  getSecondAdd(secondHandMarket) {
     return request.post(`/Second/add`,secondHandMarket)
 }
+
+export function  uplodad(file) {
+    return request.post(`/Second/upload`,file,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+}
