@@ -26,6 +26,7 @@ const router = createRouter({
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
     { path: '/pay', component: () => import("../components/pay.vue"), },
     { path: '/release', component: () => import("../components/release.vue"), },
+    { path: '/Map', component: () => import("../components/Map.vue"), },
     {
       path: '/releasesuccess/:detail/:list',
       name: 'ReleaseSuccess',
