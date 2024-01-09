@@ -30,6 +30,8 @@ const user = ref({});
 const onSubmit = async () => {
     let data = await login(user.value);
     if (data.code === 200) {
+        //保存touken到本地
+        localStorage.setItem('token', data.data);
         // 登录成功
         router.push('/my');
     } else {
