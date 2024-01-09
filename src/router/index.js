@@ -9,7 +9,6 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: AppVue
     },
     {path: '/index',component: indexVue},
     {path: '/index/house',component: () => import("../views/index/house.vue"),},
@@ -29,7 +28,7 @@ const router = createRouter({
     { path: '/publish/SecondHandMarket', component:()=> import("../views/publish/SecondHandMarket.vue"),},
 
     {path:'/publish/SecondHandMarket',component:()=> import("../views/publish/SecondHandMarket.vue"),},
-    {path:'/publish/SecondFindAll',component:()=> import("../views/publish/SecondFindAll.vue"),},
+    {path:'/publish/SecondFindAll',component:()=> import("../views/index/SecondFindAll.vue"),},
     // 公共组件路由
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
     { path: '/pay', component: () => import("../components/pay.vue"), },

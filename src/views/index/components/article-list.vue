@@ -35,7 +35,6 @@
                     <span class="orange-text" style="font-size: 14px; float: right; color: orangered; margin-right: 10px"
                     >面议</span>
                 </p>
-
             </van-col>
 
         </van-row>
