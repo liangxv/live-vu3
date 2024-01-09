@@ -7,3 +7,8 @@ export function getData(conditions) {
 export function getDetails(id) {
     return request.get(`/houserental/getDetails/${id}`);
 }
+
+export function houseAdd(formHouseData) {
+    return request.post(`/houserental/houseSave`,formHouseData);
+
+}

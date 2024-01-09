@@ -13,33 +13,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRouter,useRoute  } from 'vue-router';
+import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 const onClickLeft = () => history.back();
 
-// 详细信息路由
-const detail = ref('');
-
-// 列表路由
-const list = ref('');
-
-const router = useRouter();
-const route = useRoute();
+const id = ref('')
+const typeId = ref('')
+const useroute = useRoute();
+const userouter = useRouter();
+id.value = useroute.params.id;
+typeId.value = useroute.params.typeId;
 
 const queryinformation = () => {
-    router.push(detail.value);
+    userouter.push(detail.value);
 }
 
 const infolist = () => {
-    router.push(list.value);
+    userouter.push("/my/info");
 }
 
-onMounted(() => {
-    detail.value = route.params.detail || '';
-    console.log(detail.value);
-    list.value = route.params.list || '';
-
-});
 </script>
 
 <style scoped>
