@@ -11,4 +11,12 @@ instance.interceptors.response.use(
     }
 )
 
+// 请求拦截请求头加上touken
+instance.interceptors.request.use(
+    config=>{
+        config.headers.Authorization = 'Bearer '+localStorage.getItem('token')
+        return config
+    }
+)
+
 export default instance;

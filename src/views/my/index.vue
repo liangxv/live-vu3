@@ -115,7 +115,7 @@ const setting = () => router.push('/my/setting');
 //获取用户信息
 const user = ref({});
 const getUserInfo = async () => {
-    let data = (await getUserInfoMassage(1)).data;
+    let data = (await getUserInfoMassage()).data;
     user.value = data;
 }
 
