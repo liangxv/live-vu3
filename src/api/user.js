@@ -8,8 +8,14 @@ export function getUser(conditions) {
 export function login(data) {
     return request.post(`/user/login`, data);
 }
-export function getUserInfoMassage(conditions) {
-    return request.get(`/user/getUserInfoMassage/${conditions}`);
+
+// 手机号码登录
+export function login2(data) {
+    return request.post(`/user/login2`, data);
+}
+
+export function getUserInfoMassage() {
+    return request.get(`/user/getUserInfoMassage/`);
 }
 
 export function rechargeAndConsumption() {
@@ -19,4 +25,9 @@ export function rechargeAndConsumption() {
 //充值支付
 export function rechargeAndPay(data) {
     return request.post(`/user/rechargeAndPay`, data);
+}
+
+//发送短信验证码
+export function sms(tel) {
+    return request.post(`/user/sms?tel=${tel}`);
 }
