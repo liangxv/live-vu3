@@ -8,7 +8,7 @@ const router = createRouter({
     { path: '/', component: () => import("../views/index/index.vue"), },
     { path: '/index/house', component: () => import("../views/index/house.vue"), },
     { path: '/index/car', component: () => import("../views/index/car.vue"), },
-    { path: '/Second/findTitle/:id', component: () => import("../views/index/secondDetail.vue") },
+    { path: '/Second/findTitle/:id', name:'second',component: () => import("../views/index/secondDetail.vue") },
     { path: '/login', component: () => import("../views/login.vue") },
 
 
@@ -24,11 +24,11 @@ const router = createRouter({
     { path: '/publish/SecondFindAll', component: () => import("../views/publish/SecondFindAll.vue"), },
     // 公共组件路由
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
-    { path: '/pay', component: () => import("../components/pay.vue"), },
-    { path: '/release', component: () => import("../components/release.vue"), },
+    { path: '/pay/:id/:typeId',name: 'pay', component: () => import("../components/pay.vue"), },
+    { path: '/release/:id/:typeId', name:'release',component: () => import("../components/release.vue"), },
     {
-      path: '/releasesuccess/:detail/:list',
-      name: 'ReleaseSuccess',
+      path: '/releasesuccess/:id/:typeId',
+      name: 'releasesuccess',
       component: () => import("../components/ReleaseSuccess.vue"),
     }
 

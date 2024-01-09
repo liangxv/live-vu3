@@ -14,7 +14,7 @@
                 </van-field>
                 <van-field v-model="products.title" name="标题" label="标题" placeholder="请输入标题"
                     :rules="[{ required: true, message: '请填写用户名' }]" />
-                <van-field v-model="products.classification" is-link readonly label="分类" required placeholder="请选择"
+                <van-field v-model="classification" is-link readonly label="分类" required placeholder="请选择"
                     @click="showPicker = true" />
                 <van-popup v-model:show="showPicker" round position="bottom">
                     <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
@@ -50,12 +50,13 @@
 
 <script setup>
 import { ref } from 'vue';
+import { getSecondAdd } from '@/api/secondHand.js';
 //路由
 import { useRouter } from 'vue-router';
 const router = useRouter();
 const onClickLeft = () => history.back();
 const products = ref({
-    classification:""
+    classification: ""
 });
 const afterRead = (file) => {
     //此时文件可以自行将文件上传至服务器
@@ -64,8 +65,10 @@ const afterRead = (file) => {
 
 
 const ches = ref('0');
-const add = () => {
-    console.log(products.value);
+const id = ref("");
+const add = async () => {
+    id.value = (await getSecondAdd(products.value)).data;
+    router.push({ name: 'release', params: { id: id.value, typeId: 2 } });
 }
 
 const showPicker = ref(false);
@@ -75,8 +78,10 @@ const columns = [
     { text: '家电', value: 3 },
     { text: '办公', value: 4 },
 ];
+const classification = ref("");
 
 const onConfirm = ({ selectedOptions }) => {
+    classification.value = selectedOptions[0]?.text;
     products.value.classification = selectedOptions[0]?.value;
     showPicker.value = false;
 };

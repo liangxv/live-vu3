@@ -15,3 +15,8 @@ export function getUserInfoMassage(conditions) {
 export function rechargeAndConsumption() {
     return request.put(`/user/rechargeAndConsumption/${conditions}`);
 }
+
+//充值支付
+export function rechargeAndPay(data) {
+    return request.post(`/user/rechargeAndPay`, data);
+}
