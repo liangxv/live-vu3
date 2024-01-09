@@ -1,5 +1,6 @@
 <template>
     <van-nav-bar title="登录哔哩哔哩" />
+
     <div class="flex-container">
         <van-form @submit="onSubmit">
             <van-cell-group inset>
@@ -19,6 +20,7 @@
             </div>
         </van-form>
     </div>
+
 </template>
 
 <script setup>
@@ -27,6 +29,7 @@ import { login } from '@/api/user';
 import { useRouter  } from 'vue-router';
 const router = useRouter();
 const user = ref({});
+
 const onSubmit = async () => {
     let data = await login(user.value);
     if (data.code === 200) {

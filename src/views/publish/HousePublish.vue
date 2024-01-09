@@ -34,6 +34,7 @@
         </van-popup>
 
         <van-field v-model="formHouseData.area" label="面积" placeholder="填写面积">
+
         </van-field>
 
         <div class="price-row">
@@ -93,7 +94,7 @@
                 placeholder="请输入房源描述"
         />
 
-        <van-field v-model="formHouseData.imgSrc" name="uploader" label="添加照片">
+        <van-field v-model="formHouseData.imgSrc" name="uploader" label="添加照片" multiple >
             <template #input>
                 <van-uploader :after-read="afterRead" />
             </template>
@@ -131,6 +132,8 @@
 <script setup>
     import {ref} from 'vue';
     import {houseAdd} from "../../api/house";
+    import router from "../../router";
+    import { showToast } from "vant";
 
 
     const onClickLeft = () => history.back();
@@ -148,14 +151,23 @@
     const afterRead=(file)=>{
         // console.log("文件信息:"+file)
         console.log(file)
-        console.log("上传成功!")
-        console.log(file.objectUrl)
+        showToast("上传成功!");
+        console.log(file.file);
+        console.log("文件名："+file.file.name)
+        console.log("文件大小：" + file.file.size);
 
-        // console.log("文件名："+file.file.name)
-        // console.log("文件大小：" + file.file.size);
-        // console.log("文件类型：" + file.file.type);
-        // console.log("文件路径：" + file.file.url);
+        console.log("文件类型：" + file.file.type);
+        const isJpg=file.file.type==='image/jpeg';
+        if (!isJpg){
+            // Toast.message.error('上传头像图片只能是 JPG 格式!')
+            console.log("上传头像图片只能是 JPG 格式!");
+
+        }
+
+
+        console.log("文件路径：" + file.objectUrl);
         // formHouseData.value.imgSrc=URL.createObjectURL(file.file)
+        formHouseData.value.imgSrc=imagevalue;
     };
 
     const formHouseData = ref({
@@ -168,7 +180,7 @@
         renovationState: '',
         houseAdvantage: '',
         houseDescribe: '',
-        imgSrc: '',
+        imgSrc: [],
         person: '',
         contact: '',
     });
@@ -202,17 +214,16 @@
     };
 
     const onSubmit = async () => {
-        const HouseData={
 
-        };
-      let formData=new FormData;
+      const response=await houseAdd(formHouseData.value);
 
-      formData.append("houseRental",JSON.stringify(formHouseData.value));
-      console.log(formData.get("avatarFile"))
-      const response=await houseAdd(formData);
+      console.log(response);
 
-      if (response.data.code===200){
-          
+      if (response.code===200){
+          console.log("提交");
+          router.push('/release/:id/:typeId')
+      }else {
+          console.log('提交失败');
       }
 
     };

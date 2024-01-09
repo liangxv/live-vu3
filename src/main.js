@@ -3,11 +3,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import { Uploader,Toast } from 'vant';
+import { Uploader } from 'vant';
 
 
 const app = createApp(App)
 
-app.use(router).use(Uploader).use(Toast)
+app.use(router).use(Uploader)
 
 app.mount('#app')
