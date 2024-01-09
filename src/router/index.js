@@ -24,6 +24,7 @@ const router = createRouter({
     { path: '/publish/SecondFindAll', component: () => import("../views/publish/SecondFindAll.vue"), },
     // 公共组件路由
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
+    { path: '/Map', component: () => import("../components/Map.vue"), },
     { path: '/pay/:id/:typeId',name: 'pay', component: () => import("../components/pay.vue"), },
     { path: '/release/:id/:typeId', name:'release',component: () => import("../components/release.vue"), },
     {
