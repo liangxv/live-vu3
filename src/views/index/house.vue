@@ -45,8 +45,7 @@
     import {ref, reactive} from 'vue';
     import {getData} from '@/api/house.js';
     import ArticleList from "./components/article-list.vue";
-    // import houseArticleList from "./components/house-buy.vue";
-    import HouseList from "./components/house-list.vue";
+    import HouseList from "./components/house-list.vue"
 
     const active = ref(0);
     const type = ref(0);
