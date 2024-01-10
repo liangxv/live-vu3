@@ -31,16 +31,40 @@
     </van-cell-group>
   </van-radio-group>
   <div style="margin: 10px;">
-    <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" size="large">立即支付</van-button>
+    <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" size="large" @click="onClick()">立即支付</van-button>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router'
+import { rechargeAndPay } from '@/api/user.js'
 const onClickLeft = () => history.back();
-const price = ref(99999999);
+const price = ref(1.5);
 const balance = ref(99);
 const checked = ref('1');
+
+const route = useRoute();
+const router = useRouter();
+const pay = ref({});
+pay.value.messageId = route.params.id;
+pay.value.typeId = route.params.typeId;
+pay.value.price = price.value;
+
+const onClick =async () => {
+
+  let data= await rechargeAndPay(pay.value);
+  if (data.code == 200){
+    router.push({
+    name: 'releasesuccess',
+    params: {
+      id: pay.value.messageId,
+      typeId: pay.value.typeId
+    }
+  })
+  }
+  
+}
 
 const recharge = () => {
   console.log('充值');
@@ -48,9 +72,9 @@ const recharge = () => {
 </script>
 
 <style scoped>
-  img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-  }
+img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
 </style>

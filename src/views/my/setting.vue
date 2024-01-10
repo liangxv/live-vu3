@@ -7,13 +7,20 @@
             <van-cell title="我的收货地址" is-link to="/my/addresslist"/>
         </van-cell-group>
 
-        <van-button type="primary" size="large" style="margin-top: 10px;">退出登录</van-button>
+        <van-button type="primary" size="large" style="margin-top: 10px; " @click="onClick()">退出登录</van-button>
         
     </div>
 </template>
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const onClickLeft = () => history.back();
-
+const onClick = () => {
+    // 退出登录
+    localStorage.clear();
+    // 跳转到登录页面
+    router.push('/login');
+}
 </script>
 <style scoped>
 .flex-container {

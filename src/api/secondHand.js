@@ -7,6 +7,14 @@ export function getSecondDetails(id) {
      return request.get(`/Second/findTitle/${id}`);
 }
 
-export function getSecondAdd(secondHandMarket) {
-    return request.get(`/Second/add`,secondHandMarket)
+export function  getSecondAdd(secondHandMarket) {
+    return request.post(`/Second/add`,secondHandMarket)
+}
+
+export function  uplodad(file) {
+    return request.post(`/Second/upload`,file,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
 }
