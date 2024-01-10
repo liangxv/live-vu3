@@ -214,7 +214,7 @@
     .tag{
         height: 20px;
         width: 37px;
-        margin-left: 80px;
+        margin-left: 60px;
     }
 
     .place-info {

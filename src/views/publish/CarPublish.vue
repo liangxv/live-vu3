@@ -22,19 +22,29 @@
 <!--        <van-field v-model="formCarData.departureTime" label="乘车时间" placeholder="选择时间"-->
 <!--                   style="font-weight: bold"></van-field>-->
 
-<!--        <van-field label="乘车时间" placeholder="选择时间"-->
-<!--                   style="font-weight: bold" readonly is-link @click="showPicker = true">-->
-<!--        </van-field>-->
-<!--        <van-popup v-model:show="showPicker" position="bottom">-->
-<!--            <van-datetime-picker-->
-<!--                    type="time"-->
-<!--                    :min-hour="10"-->
-<!--                    :max-hour="20"-->
-<!--                    @confirm="onConfirmDepartureTime"-->
-<!--                    @cancel="showPicker = false"-->
-<!--                    v-model="formCarData.departureTime"-->
-<!--            />-->
-<!--        </van-popup>-->
+        <van-field label="乘车时间" placeholder="选择时间" v-model="endTime"
+                   style="font-weight: bold" readonly is-link @click="showPicker = true">
+        </van-field>
+        <van-popup v-model:show="showPicker" position="bottom">
+
+            <van-picker-group
+                    title="时间选择"
+                    :tabs="['选择日期', '选择时间']"
+                    @confirm="onConfirmDepartureTime"
+                    @cancel="showPicker = false"
+            >
+                <van-date-picker
+                        v-model="currentDate"
+                        :min-date="minDate"
+                        :max-date="maxDate"
+                />
+                <van-time-picker
+                        v-model="currentTime"
+                        :columns-type="columnsType"
+                />
+            </van-picker-group>
+
+        </van-popup>
 
         <van-field v-model="formCarData.passengerNums" label="乘车人数"
                    style="font-weight: bold;">
@@ -61,18 +71,25 @@
     import { ref } from 'vue';
     import { carAdd } from "@/api/car";
     import { useRouter } from 'vue-router';
+    // import { datePickerProps } from 'vant/es/date-picker/style/index'
 
     const router = useRouter();
     const onClickLeft = () => history.back();
 
     const showPicker = ref(false);
+    const currentDate = ref(["2023", "01", "11"]);
+    const currentTime = ref(["09", "22", "34"]);
+    const columnsType = ref(["hour", "minute", "second"]);
+    const minDate = ref(new Date(2024, 0, 11));
+    const maxDate = ref(new Date(2025, 11, 31));
+    const endTime = ref("2023-01-11 09:22:34");
 
     const onSubmit = async () => {
         const response = await carAdd(formCarData.value);
         console.log(response);
         if (response.code === 200) {
             console.log("提交");
-            router.push({ name: 'release', params: { id: response.data, typeId: 1 } });
+            router.push({ name: 'release', params: { id: response.data, typeId: 3 } });
         } else {
             console.log('提交失败');
         }
@@ -89,7 +106,8 @@
     });
 
     const onConfirmDepartureTime = () => {
-        // formCarData.value.departureTime = selectedOptions[0]?.value
+        endTime.value = `${currentDate.value.join("-")} ${currentTime.value.join(":")}`;
+        formCarData.value.departureTime = endTime;
         showPicker.value = false;
     };
 

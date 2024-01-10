@@ -150,30 +150,44 @@
     const changeType = (typeId) => {
         if (typeId == 1){
             leftText.value = "人找车";
+            param.value.requireTypeId = 1;
         } else if (typeId == 2){
             leftText.value = "车找人";
+            param.value.requireTypeId = 2;
         } else if (typeId == 3){
             leftText.value = "车找货";
+            param.value.requireTypeId = 3;
         } else if (typeId == 4){
             leftText.value = "货找车";
+            param.value.requireTypeId = 4;
         }
     };
-
-    const param = ref({
-        pageNum: 1,
-        pageSize: 5,
-    });
 
     const list = ref([]);
     const loading = ref(false);
     const finished = ref(false);
     const total = ref(0);
 
+    const param = ref({
+        pageNum: 1,
+        pageSize: 5,
+        requireTypeId: ''
+    });
+
     const onLoad = async () => {
 
+        // const param = {
+        //     pageNum: 1,
+        //     pageSize: 5,
+        //     requireTypeId: ''
+        // };
+
         let data = await getData({...param.value})
+
         list.value = list.value.concat(data.data.list)
         total.value = data.data.total
+
+        console.log(list.value);
 
         // 加载状态结束
         loading.value = false;
@@ -238,7 +252,7 @@
         color: #59b7fe;
         position: absolute;
         top: 10px;
-        left: 93px;
+        left: 113px;
         font-size: 11px;
         padding: 1px 3px;
         height: 13px;
