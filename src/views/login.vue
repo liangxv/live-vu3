@@ -27,7 +27,7 @@
                 <van-field v-model="user.validateCode" name="验证码" label="验证码" placeholder="验证码" autosize
                     :rules="[{ required: true, message: '请填验证码' }]">
                     <template #button>
-                        <van-button size="small" :disabled="isSend"  type="primary" @click="onSms()">发送验证码</van-button>
+                        <van-button size="small" :disabled="isSend" type="primary" @click="onSms()">发送验证码</van-button>
                     </template>
                 </van-field>
             </van-cell-group>
@@ -36,7 +36,6 @@
             </div>
         </van-form>
     </div>
-
 </template>
 
 <script setup>
@@ -55,8 +54,13 @@ const onSubmit = async () => {
         data = await login(user.value);
     }
     if (data.code === 200) {
-        //保存touken到本地
-        localStorage.setItem('token', data.data);
+        if (isPhone.value) {
+            //保存touken到本地
+            localStorage.setItem('token', data.data);
+        } else {
+            localStorage.setItem('token', data.data.accessToken);
+        }
+
         // 登录成功
         router.push('/my');
     } else {
@@ -77,7 +81,7 @@ const getRightText = () => {
 const isSend = ref(false)
 const onSms = async () => {
     let data = await sms(user.value.tel)
-    if(data.code === 200){
+    if (data.code === 200) {
         //按钮置灰60秒
         isSend.value = true
         setTimeout(() => {

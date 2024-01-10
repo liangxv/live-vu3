@@ -113,7 +113,7 @@ const afterRead = async (file) => {
     if (data.code === 200) {
         formHouseData.value.imgSrc = data.data;
     }
-    console.log(value.value);
+   ;
 };
 
 const formHouseData = ref({
@@ -126,7 +126,7 @@ const formHouseData = ref({
     renovationState: '',
     houseAdvantage: '',
     houseDescribe: '',
-    imgSrc: [],
+    imgSrc: '',
     person: '',
     contact: '',
 });
