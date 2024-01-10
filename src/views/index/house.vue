@@ -40,7 +40,9 @@ import HouseList from "./components/house-list.vue"
 const router = useRouter();
 const active = ref(0);
 const type = ref(0);
-const onClickLeft = () => history.back();
+const onClickLeft = () => {
+    router.push('/');
+};
 
 const houseStateList = reactive(
     [

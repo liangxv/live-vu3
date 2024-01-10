@@ -4,8 +4,11 @@
             <!-- 用户信息 -->
             <van-row>
                 <van-col span="6" offset="1">
-                    <van-image round width="70px" height="70px"
+                    <van-uploader :after-read="afterRead">
+                        <van-image round width="70px" height="70px"
                         :src='user.avatar' />
+                    </van-uploader>
+                    
                 </van-col>
                 <van-col span="8">
                     <div style="color: #fff;font-size: 12px;">
@@ -105,6 +108,7 @@ import NavBottom from '@/views/navbottom.vue';
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { getUserInfoMassage } from '@/api/user.js';
+import { uplodad } from '@/api/secondHand.js';
 
 const router = useRouter();
 //设置
@@ -118,6 +122,16 @@ const getUserInfo = async () => {
     let data = (await getUserInfoMassage()).data;
     user.value = data;
 }
+
+const afterRead = async (file) => {
+    //此时文件可以自行将文件上传至服务器
+    console.log(file);
+    let data = await uplodad(file);
+    if (data.code === 200) {
+        formHouseData.value.imgSrc = data.data;
+    }
+   ;
+};
 
 onMounted(() => {
     getUserInfo();

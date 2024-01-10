@@ -53,7 +53,7 @@
             <div class="house-detail-container">
                 <div class="house-detail-item">
                     <p>装修情况</p>
-                    <h3>{{ houseDetail.houseType }}</h3>
+                    <h3>{{ houseDetail.renovationState }}</h3>
                 </div>
             </div>
         </van-col>
@@ -67,19 +67,22 @@
         <van-action-bar-button type="primary" icon="phone" text="联系Ta" @click="onContact" />
     </van-action-bar>
     <van-action-sheet v-model:show="show" :actions="actions" cancel-text="取消" :description="'联系人: ' + houseDetail.person"
-        close-on-click-action @select="onSelectContact()"/>
+        close-on-click-action @select="onSelectContact()" />
     <van-share-sheet v-model:show="showShare" title="立即分享给好友" :options="options" @select="onSelect" />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { showToast } from 'vant';
 import { getDetails } from '@/api/house.js';
 import { getUser } from '@/api/user.js';
 const id = ref(0);
 const route = useRoute();
-const onClickLeft = () => history.back();
+const router = useRouter();
+const onClickLeft = () => {
+    router.push('/index/house');
+};
 const showShare = ref(false);
 
 //获取房屋信息
@@ -119,9 +122,8 @@ const onContact = () => {
     console.log(houseDetail.value.contact)
 };
 
-const onSelectContact = (action,index) => {
-    console.log(action)
-    console.log(index)
+const onSelectContact = (action, index) => {
+    window.location.href = `tel:${houseDetail.value.contact}`;
 };
 
 //数字格式显示
@@ -167,6 +169,12 @@ const show = ref(false);
 const actions = ref([]);
 
 const onSelect = (option) => {
+    const currentUrl = encodeURIComponent(window.location.href);
+    const shareUrl = `https://wechat.share.url?target=${currentUrl}`;
+    console.log(shareUrl);
+
+    // 使用shareUrl进行跳转到微信分享页面
+    window.location.href = shareUrl;
     showToast(option.name);
     showShare.value = false;
 };

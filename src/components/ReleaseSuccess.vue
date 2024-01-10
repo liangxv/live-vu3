@@ -20,16 +20,28 @@ const onClickLeft = () => history.back();
 const id = ref('')
 const typeId = ref('')
 const useroute = useRoute();
-const userouter = useRouter();
+const router = useRouter();
 id.value = useroute.params.id;
 typeId.value = useroute.params.typeId;
 
 const queryinformation = () => {
-    userouter.push(detail.value);
+    switch (typeId.value) {
+        case "1":
+            router.push('/house/detail/' + id.value);
+            break;
+        case "3":
+            router.push('/car/detail/' + id.value);
+            break;
+        case "2":
+            router.push('/Second/findTitle/' + id.value);
+            break;
+        default:
+            break;
+    }
 }
 
 const infolist = () => {
-    userouter.push("/my/info");
+    router.push("/my/info");
 }
 
 </script>
