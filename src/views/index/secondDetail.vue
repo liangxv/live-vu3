@@ -51,7 +51,7 @@ import {ref,onMounted} from 'vue';
 import {useRoute} from 'vue-router';
 import {showToast} from 'vant';
 import {getSecondDetails} from "@/api/secondHand.js";
-import {getUser} from "@/api/user.js";
+import { getUser } from "@/api/user.js";
 const id = ref(0);
 const route = useRoute();
 const onClickLeft = () =>history.back();

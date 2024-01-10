@@ -84,7 +84,7 @@ const showShare = ref(false);
 
 //获取房屋信息
 const houseDetail = ref({});
-const advantageArray = [",", " "];  // 分隔符是逗号和空格
+const advantageArray = [","," "];  // 分隔符是逗号和空格
 const resultArray = ref([])
 const price = ref(0);
 
@@ -114,7 +114,7 @@ const onContact = () => {
     actions.value = [
         { name: '选项一' },
         { name: '选项二' },
-        { name: '拨打电话', subname: houseDetail.value.contact },
+        { name: '拨打电话', subname: houseDetail.value.contact},
     ]
     console.log(houseDetail.value.contact)
 };

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import indexVue from '@/views/index/index.vue'
+import AppVue from '@/App.vue'
 
 
 
@@ -16,7 +17,7 @@ const router = createRouter({
     {path: '/index/car',component: () => import("../views/index/car.vue"),},
     {path:'/Second/findTitle/:id',component:()=>import("../views/index/secondDetail.vue")},
     {path: '/login', component: () => import("../views/login.vue")},
-  
+
 
     { path: '/house/detail/:id', component: () => import("../views/index/housedetail.vue") },
     { path: '/my', component: () => import("../views/my/index.vue"), },
@@ -27,9 +28,7 @@ const router = createRouter({
     { path: '/publish', component: () => import("../views/publish/index.vue"), },
     { path: '/publish/housepublish', component: () => import("../views/publish/HousePublish.vue"), },
     { path: '/publish/SecondHandMarket', component:()=> import("../views/publish/SecondHandMarket.vue"),},
-
-    {path:'/publish/SecondHandMarket',component:()=> import("../views/publish/SecondHandMarket.vue"),},
-    {path:'/publish/SecondFindAll',component:()=> import("../views/publish/SecondFindAll.vue"),},
+    {path:'/publish/SecondFindAll',component:()=> import("../views/index/SecondFindAll.vue"),},
     // 公共组件路由
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
     { path: '/pay', component: () => import("../components/pay.vue"), },
@@ -39,7 +38,7 @@ const router = createRouter({
       name: 'ReleaseSuccess',
       component: () => import("../components/ReleaseSuccess.vue"),
     }
-    
+
   ]
 })
 
