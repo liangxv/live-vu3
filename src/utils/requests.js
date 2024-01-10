@@ -11,7 +11,7 @@ instance.interceptors.response.use(
     }
 )
 
-// 请求拦截请求头加上touken
+// 请求拦截请求头加上token
 instance.interceptors.request.use(
     config=>{
         config.headers.Authorization = 'Bearer '+localStorage.getItem('token')

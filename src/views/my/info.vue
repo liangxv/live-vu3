@@ -19,7 +19,9 @@
             </template>
         </van-cell>
         <van-tabs v-model:active="active" swipeable title-active-color="rgba(25, 137, 250, 0.8)">
-            <van-tab title="全部">内容 1</van-tab>
+            <van-tab title="全部">
+                <AllList />
+            </van-tab>
             <van-tab title="顶置">内容 2</van-tab>
             <van-tab title="推广">内容 3</van-tab>
             <van-tab title="已下架">内容 4</van-tab>
@@ -29,6 +31,7 @@
 <script setup>
 import { ref } from 'vue';
 import { showToast } from 'vant';
+import AllList from './components/list.vue';
 const onClickLeft = () => history.back();
 const value = ref('');
 const onSearch = (val) => showToast(val);
@@ -38,16 +41,12 @@ const value1 = ref(0);
 const option1 = [
     { text: '全部', value: 0 },
     { text: '房屋租售', value: 1 },
-    { text: '活动商品', value: 2 },
+    { text: '二手市场', value: 2 },
 ];
+
+
 </script>
 <style scoped>
-.flex-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    /* 100% 视窗高度 */
-    background: #f1f2f8;
-}
+
 </style>
     
