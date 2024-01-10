@@ -17,9 +17,11 @@
                 <van-col span="8">
                     <p style="font-size: 15px; text-align: center;">{{ item.createTime }}</p>
                 </van-col>
-                <van-col span="8">                   
-                    <p style="font-size: 15px; text-align: right;"><img src="@/assets/avg/views.svg">{{ item.views }}</p>
-                </van-col>
+                <van-col span="8">
+                    <p style="font-size: 15px; display: flex; align-items: center; justify-content: flex-end;">
+                        <img src="@/assets/avg/views.svg" style="margin-right: 5px;">
+                        {{ item.views }}
+                    </p>                </van-col>
                 <van-col></van-col>
             </van-row>
         </van-list>

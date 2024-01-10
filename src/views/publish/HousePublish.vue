@@ -24,15 +24,16 @@
 
         </van-popup>
 
-        <van-field v-model="formHouseData.area" label="面积" placeholder="填写面积">
-
+        <van-field v-model="formHouseData.area" label="面积" placeholder="例如：120㎡">
         </van-field>
+
+        <van-field v-model="formHouseData.houseType" label="户型" placeholder="例如:三室两厅一卫"></van-field>
 
         <div class="price-row">
             <van-field class="price-field" v-model="formHouseData.price" label="房源价格" placeholder="填写价格">
                 <template #input>
                     <van-checkbox-group v-model="formHouseData.isNegotiable" direction="horizontal">
-                        <van-checkbox name="面议" shape="square">面议</van-checkbox>
+                        <van-checkbox name="面议" shape="square" >面议</van-checkbox>
                     </van-checkbox-group>
                 </template>
             </van-field>
@@ -97,7 +98,8 @@ const router = useRouter();
 
 const onClickLeft = () => history.back();
 
-const areaValue = ref('120㎡一室一厅一卫');
+const areaValue = ref('㎡');
+
 
 const checked = ref('1');
 const result = ref('');
@@ -123,6 +125,7 @@ const formHouseData = ref({
     title: '',
     houseState: '',
     area: '',
+    houseType:'',
     renovationState: '',
     houseAdvantage: '',
     houseDescribe: '',
@@ -147,6 +150,7 @@ const renovationStateList = [
 ];
 
 
+
 const onConfirm = ({ selectedOptions }) => {
     result.value = selectedOptions[0]?.text;
     formHouseData.value.houseState = selectedOptions[0].value;
@@ -154,8 +158,8 @@ const onConfirm = ({ selectedOptions }) => {
 };
 
 const onConfirmRenovationState = ({ selectedOptions }) => {
-    result2.value = selectedOptions[0]?.text
-    formHouseData.value.releaseState = selectedOptions[0]?.value
+    result2.value = selectedOptions[0]?.text;
+    formHouseData.value.renovationState = selectedOptions[0]?.text;
     showPicker2.value = false;
 };
 
@@ -173,5 +177,7 @@ const onSubmit = async () => {
     }
 
 };
+
+
 
 </script>
