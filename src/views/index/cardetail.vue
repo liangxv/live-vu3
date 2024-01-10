@@ -52,12 +52,35 @@
                 <van-col>
                     <van-icon name="diamond-o" v-if="user.membershipLevel == 9" color="#face75" />
                     <span style="margin-left: 2px; font-size: 20px;">{{ user.nickname }}</span>
-<!--                    <p>{{ dayjs(carDetail.departureTime).format('M月D日 HH:mm ') }}发布</p>-->
-<!--                    <p>{{ dayjs(carDetail.departureTime).fromNow() }}发布</p>-->
                 </van-col>
             </van-row>
         </template>
     </van-cell>
+    <v-cell>
+        <div class="place-info">
+            <span class="departure">{{carDetail.departure}}</span>
+            <svg t="1704446307319" viewBox="0 0 1024 1024" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg" p-id="1413"
+                 width="30" height="30">
+                <path d="M841.813333 623.957333H169.216a24.234667 24.234667 0 0 1 0-48.384h672.597333a24.234667 24.234667 0 1 1 0 48.384z"
+                      p-id="1414"></path>
+                <path d="M854.784 623.957333a24.490667 24.490667 0 0 1-17.066667-6.570666L651.861333 441.856a24.234667 24.234667 0 1 1 33.194667-35.242667l186.282667 175.530667a24.234667 24.234667 0 0 1-16.554667 41.813333z"
+                      p-id="1415"></path>
+            </svg>
+            <span class="destination">{{carDetail.destination}}</span>
+        </div>
+    </v-cell>
+    <div style="margin-left: 15px;">
+        <h3>备注说明</h3>
+        <p>{{ carDetail.requireRemarks }}</p>
+    </div>
+    <van-action-bar>
+        <van-action-bar-button type="primary" icon="phone" text="联系Ta" @click="onContact" />
+    </van-action-bar>
+    <van-action-sheet v-model:show="show" :actions="actions" cancel-text="取消" :description="'联系人: ' + carDetail.nickname"
+                      close-on-click-action @select="onSelectContact()"/>
+    <van-share-sheet v-model:show="showShare" title="立即分享给好友" :options="options" @select="onSelect" />
+
 </template>
 
 <script setup>
@@ -66,10 +89,12 @@
     import { getDetail } from '@/api/car.js';
     import { getUser } from '@/api/user.js';
     import { ref, onMounted } from "vue";
-    import dayjs from 'dayjs'
-    import { relativeTime } from 'dayjs/plugin/relativeTime'
-
+    // import dayjs from 'dayjs';
+    // import "dayjs/locale/zh-cn";
+    // import { relativeTime } from 'dayjs/plugin/relativeTime';
+    //
     // dayjs.extend(relativeTime);
+    // dayjs.locale("zh-cn");
 
     const route = useRoute();
     const id = ref(0);
@@ -108,8 +133,8 @@
     const onContact = () => {
         show.value = true
         actions.value = [
-            { name: '选项一' },
-            { name: '选项二' },
+            // { name: '选项一' },
+            { name: '发送短信' },
             { name: '拨打电话', subname: carDetail.value.contact },
         ]
         console.log(carDetail.value.contact)
@@ -189,7 +214,30 @@
     .tag{
         height: 20px;
         width: 37px;
-        margin-left: 80px;
+        margin-left: 60px;
+    }
+
+    .place-info {
+        height: 50px;
+        text-align: center;
+    }
+
+    svg {
+        fill: #59b7fe;
+        vertical-align: center;
+        margin: -10px 37px 0px;
+        text-align: center;
+    }
+
+    .departure{
+        font-weight: bold;
+        font-size: 20px;
+        color: #222222;
+    }
+    .destination{
+        font-weight: bold;
+        font-size: 20px;
+        color: #222222;
     }
 
 </style>
