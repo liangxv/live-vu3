@@ -10,7 +10,6 @@
                        :text="item.label"
                        @click="changeType(item.typeId)">
             <template #icon>
-<!--                <img src="@/assets/car-1.png">-->
                 <img :src="item.img">
             </template>
         </van-grid-item>
@@ -25,6 +24,7 @@
         <van-cell v-for="item in list"
                  :key="item.id"
                  @click="requireDetail(item.id)"
+                  style="border-bottom: 10px solid #f3f3f3"
         >
             <!-- 第一行：头像，昵称，推广标识，需求类型 -->
             <div class="user-info">
@@ -40,21 +40,21 @@
 
                 <p v-if="item.requireTypeId == 1">
                     <span class="requireType" style="color: coral">人找车</span>
-                    <span class="tag1">拼车</span>
+                    <van-tag size="small" class="tag1">拼车</van-tag>
                 </p>
                 <p v-else-if="item.requireTypeId == 2">
                     <span class="requireType" style="color: #59b7fe">车找人</span>
-                    <span class="tag1">准时</span>
-                    <span class="tag2">价格可谈</span>
+                    <van-tag size="small" class="tag1">准时</van-tag>
+                    <van-tag size="small" class="tag2">价格可谈</van-tag>
                 </p>
                 <p v-else-if="item.requireTypeId == 3">
                     <span class="requireType" >车找货</span>
-                    <span class="tag1">准时</span>
-                    <span class="tag2">价格可谈</span>
+                    <van-tag size="small" class="tag1">准时</van-tag>
+                    <van-tag size="small" class="tag2">价格可谈</van-tag>
                 </p>
                 <p v-else-if="item.requireTypeId == 4">
                     <span class="requireType">货找车</span>
-                    <span class="tag1">包车</span>
+                    <van-tag size="small" class="tag1">包车</van-tag>
                 </p>
             </div>
             <!-- 第二行：出发地，目的地 -->
@@ -100,8 +100,6 @@
             <div class="tips">
                 <p class="remarks">备注:{{item.requireRemarks}}</p>
             </div>
-
-
         </van-cell>
     </van-list>
 
@@ -190,12 +188,10 @@
     }
 
     .user-info {
-        /*position: relative;*/
         height: 50px;
     }
 
     .place-info {
-        /*position: relative;*/
         height: 20px;
         text-align: center;
     }
@@ -215,6 +211,7 @@
         padding: 5px;
         position: absolute;
         left: 1px;
+        top: -2px;
     }
 
     .nickname {
@@ -227,18 +224,6 @@
         height: 15px;
         padding: 1px 2px;
         color: #222222;
-    }
-
-    van-grid{
-        border-bottom: 5px solid #b9b9b9;
-    }
-
-    van-cell{
-
-    }
-
-    div{
-        /*float: left;*/
     }
 
     .state {
@@ -258,11 +243,7 @@
         position: absolute;
         top: 33px;
         left: 66px;
-        font-size: 11px;
         color: gray;
-        padding: 1px 3px;
-        height: 15px;
-        line-height: 15px;
         background-color: #f1f2f8;
     }
 
@@ -270,11 +251,7 @@
         position: absolute;
         top: 33px;
         left: 103px;
-        font-size: 11px;
         color: gray;
-        padding: 1px 3px;
-        height: 15px;
-        line-height: 15px;
         background-color: #f1f2f8;
     }
 
@@ -316,9 +293,7 @@
         font-weight: bold;
         color: #3a3534;
     }
-
     .date{
 
     }
-
 </style>
