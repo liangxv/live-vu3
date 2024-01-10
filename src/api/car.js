@@ -7,3 +7,7 @@ export function getData(conditions) {
 export function getDetail(id) {
     return request.get(`/carRequirement/${id}`);
 }
+
+export function carAdd(formCarData) {
+    return request.post(`/carRequirement/add`,formCarData);
+}

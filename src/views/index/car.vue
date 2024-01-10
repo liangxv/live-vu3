@@ -103,6 +103,8 @@
         </van-cell>
     </van-list>
 
+    <van-floating-bubble icon="add" @click="onClick" />
+
 </template>
 
 <script setup>
@@ -134,6 +136,11 @@
             img: '../../src/assets/car-4.png'
         }
     ]);
+
+    // 跳转至租车供需发布页面
+    const onClick = () => {
+        router.push('/publish/carpublish');
+    }
 
     // 跳转到详情页面
     const requireDetail = (id) => {
