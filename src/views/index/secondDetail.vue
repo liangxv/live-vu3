@@ -62,6 +62,7 @@ const  secondDetail = ref({});
 const  advantageArray = ref[","," "];
 const  resultArray =ref([]);
 const  price = ref(0);
+
 const details = async () =>{
     let data = (await getSecondDetails(id.value)).data;
     secondDetail.value = data;
