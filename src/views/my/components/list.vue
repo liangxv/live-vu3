@@ -1,6 +1,6 @@
 <template>
     <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-        <van-row v-for="item in list" :key="item.id" @click="onItemClick(item.id, item.typeId)">
+        <van-row v-for="item in list" :key="item.id" @click="onItemClick(item.id, item.typeId)" class="van-hairline--top-bottom">
 
             <van-col span="24">
                 <div class="van-ellipsis" style="padding: 5px">
@@ -12,7 +12,7 @@
             </van-col>
             <van-row>
                 <van-col span="16">
-                    
+
                 </van-col>
                 <van-col span="8">
                     <p style="font-size: 15px; display: flex; align-items: center; justify-content: flex-end;">
@@ -66,7 +66,7 @@ const onItemClick = (id, typeId) => {
     if (typeId == 1) {
         router.push('/house/detail/' + id)
     } else if (typeId == 2) {
-        router.push('/car/detail/' + id)
+        router.push('/Second/findTitle/' + id)
     }
 }
 </script>

@@ -10,7 +10,7 @@
                 <van-field v-model="user.validateCode" name="验证码" label="验证码" placeholder="验证码" autosize
                     :rules="[{ required: true, message: '请填验证码' }]">
                     <template #right-icon>
-                        <van-image src="http://localhost:8080/kaptcha/image"></van-image>
+                        <van-image src="http://192.168.1.78:8080/kaptcha/image"></van-image>
                     </template>
                 </van-field>
             </van-cell-group>

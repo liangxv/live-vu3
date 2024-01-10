@@ -2,9 +2,11 @@
     <div class="map-container">
         <div ref="map" class="map"></div>
     </div>
+    <NavBottom></NavBottom>
 </template>
 
 <script>
+import NavBottom from '@/views/navbottom.vue';
     export default {
         name: 'BaiduMap',
         data() {
@@ -45,7 +47,7 @@
             initMap() {
                 // 使用百度地图API创建地图
                 this.map = new BMap.Map(this.$refs.map);
-                const point = new BMap.Point(113.17, 23.8);
+                const point = new BMap.Point(113.406851 ,23.198169);
                 this.map.centerAndZoom(point, 15);
             }
         },
@@ -70,7 +72,7 @@
     }
 
     .map {
-        width: 800px;
-        height: 600px;
+        width: 100vh;
+        height: 100vh;
     }
 </style>

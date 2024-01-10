@@ -16,7 +16,7 @@ const icon = {
                 <img :src="props.active ? icon.active : icon.inactive" />
             </template>
         </van-tabbar-item>
-        <van-tabbar-item icon="location-o">附近</van-tabbar-item>
+        <van-tabbar-item icon="location-o" to="/Map">附近</van-tabbar-item>
         <van-tabbar-item icon="contact-o" to="/my">我的</van-tabbar-item>
     </van-tabbar>
 </template>

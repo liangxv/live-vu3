@@ -64,9 +64,7 @@ const gridItems = [
         text: "拼车租车",
         dot: true,
         iconSrc: "src/assets/avg/car.svg",
-        clickHandler: () => {
-          show.value = true;
-        }
+        clickHandler: () => router.push('/publish/carpublish')
       },
       {
         text: "本地商家",
