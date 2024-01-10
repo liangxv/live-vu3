@@ -45,7 +45,7 @@ const gridItems = [
         text: "二手市场",
         dot: true,
         iconSrc: "src/assets/avg/secondhand.svg",
-        clickHandler: () => router.push('publish/SecondFindAll'),
+        clickHandler: () => router.push('index/SecondFindAll'),
       },
       {
         text: "拼车租车",

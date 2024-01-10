@@ -27,7 +27,7 @@ const router = createRouter({
     { path: '/publish/housepublish', component: () => import("../views/publish/HousePublish.vue"), },
     { path: '/publish/carpublish', component: () => import("../views/publish/CarPublish.vue"), },
     { path: '/publish/SecondHandMarket', component: () => import("../views/publish/SecondHandMarket.vue"), },
-    { path: '/publish/SecondFindAll', component: () => import("../views/publish/SecondFindAll.vue"), },
+    { path: '/index/SecondFindAll', component: () => import("../views/index/SecondFindAll.vue"), },
     // 公共组件路由
     { path: '/sticky', component: () => import("../components/StickyPackage.vue"), },
     { path: '/Map', component: () => import("../components/Map.vue"), },

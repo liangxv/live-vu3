@@ -21,8 +21,6 @@
 
                 <span class="van-multi-ellipsis--l3" style="font-size: 15px;">{{item.description}}</span>
 
-
-
                 <van-col span="8">
                     <p style="font-size: 15px; text-align: left;">用户:某某以</p>
                 </van-col>
