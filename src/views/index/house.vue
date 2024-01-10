@@ -34,7 +34,9 @@
         </van-tab>
 
     </van-tabs>
-    <!-- 一级标签-->
+
+    <!--            一级标签-->
+
     <van-floating-bubble icon="add" @click="onClick"/>
 
 </template>
@@ -42,7 +44,7 @@
 <script setup>
     import {ref, reactive} from 'vue';
     import {getData} from '@/api/house.js';
-    import ArticleList from "./components/article-list.vue"
+    import ArticleList from "./components/article-list.vue";
     // import houseArticleList from "./components/house-buy.vue";
     import HouseList from "./components/house-list.vue";
 

@@ -101,7 +101,6 @@
     const active = ref(0);
     const checked = ref('1');
     const ches = ref('0');
-    const onClickLeft = () =>history.back();
     const columns = [
         {text: '杭州', value: 'Hangzhou'},
         {text: '宁波', value: 'Ningbo'},

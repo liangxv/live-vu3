@@ -52,7 +52,11 @@
                     <van-grid-item icon="edit" text="我的发布" to="/my/info"/>
                     <van-grid-item icon="back-top" text="我的顶置" />
                     <van-grid-item icon="chart-trending-o" text="我的推广" />
-                    <van-grid-item icon="orders-o" text="审核中" />
+                    <van-grid-item text="审核中" >
+                        <template #icon>
+                            <img src="@/assets/avg/audit.svg">
+                        </template>
+                    </van-grid-item>
                 </van-grid>
             </van-col>
         </van-row>
@@ -82,7 +86,7 @@
         <van-row>
             <van-col span="24">
                 <van-cell-group>
-                    <van-cell title="我的订单" value="全部订单" is-link />
+                    <van-cell title="我的订单" value="全部订单" is-link to="/my/order"/>
                 </van-cell-group>
                 <van-grid clickable :column-num="4" :border="false">
                     <van-grid-item icon="balance-pay" icon-color="#57aff0" text="待付款" />
@@ -111,7 +115,7 @@ const setting = () => router.push('/my/setting');
 //获取用户信息
 const user = ref({});
 const getUserInfo = async () => {
-    let data = (await getUserInfoMassage(1)).data;
+    let data = (await getUserInfoMassage()).data;
     user.value = data;
 }
 

@@ -12,14 +12,31 @@
         </div>
     </div>
     <div style="margin: 10px;">
-        <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" size="large">立即发布</van-button>
+        <van-button color="linear-gradient(to right, #ff6034, #ee0a24)" size="large" @click="onClick()">立即发布</van-button>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter ,useRoute} from 'vue-router'
 const onClickLeft = () => history.back();
-const price = ref(99999999);
+const price = ref(1.5);
+const id = ref('')
+const typeId = ref('')
+const useroute = useRoute();
+const userouter = useRouter();
+id.value = useroute.params.id;
+typeId.value = useroute.params.typeId;
+
+const onClick = () => {
+    userouter.push({
+        name: 'pay',
+        params: {
+            id: id.value,
+            typeId: typeId.value
+        }
+    })
+}
 </script>
 
 <style scoped>

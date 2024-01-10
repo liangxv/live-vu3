@@ -36,8 +36,8 @@ const text = '数量 128';
 const keywords = '128';
 const value1 = ref(0);
 const option1 = [
-    { text: '全部商品', value: 0 },
-    { text: '新款商品', value: 1 },
+    { text: '全部', value: 0 },
+    { text: '房屋租售', value: 1 },
     { text: '活动商品', value: 2 },
 ];
 </script>
