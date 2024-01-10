@@ -107,9 +107,9 @@
 import NavBottom from '@/views/navbottom.vue';
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { getUserInfoMassage } from '@/api/user.js';
+import { getUserInfoMassage ,avatar} from '@/api/user.js';
 import { uplodad } from '@/api/secondHand.js';
-
+const avatars = ref('');
 const router = useRouter();
 //设置
 const setting = () => router.push('/my/setting');
@@ -128,8 +128,10 @@ const afterRead = async (file) => {
     console.log(file);
     let data = await uplodad(file);
     if (data.code === 200) {
-        formHouseData.value.imgSrc = data.data;
+        avatars.value = data.data;
     }
+    await avatar(avatars.value)
+    getUserInfo();
    ;
 };
 

@@ -21,6 +21,7 @@ const router = createRouter({
     { path: '/my/order', component: () => import("../views/my/order.vue"), },
     { path: '/my/orderList', component: () => import("../views/my/orderList.vue"), },
     { path: '/my/setting', component: () => import("../views/my/setting.vue"), },
+    { path: '/my/recharge', component: () => import("@/views/my/recharge.vue"), },
     { path: '/my/addresslist', component: () => import("../views/my/AddressList.vue"), },
     { path: '/publish', component: () => import("../views/publish/index.vue"), },
     { path: '/publish/housepublish', component: () => import("../views/publish/HousePublish.vue"), },

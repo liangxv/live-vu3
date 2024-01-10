@@ -31,3 +31,8 @@ export function rechargeAndPay(data) {
 export function sms(tel) {
     return request.post(`/user/sms?tel=${tel}`);
 }
+
+//修改图片
+export function avatar(avatar) {
+    return request.post(`/user/updateById?avatar=${avatar}`);
+}
